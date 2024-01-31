@@ -34,23 +34,23 @@ while True:
         activity = values["activity"]
         location = values["location"]
         if age == "7-12":
-            age = 1
+            age = 0.6
         elif age == "13-18":
-            age = 2
+            age = 1.2
         elif age == "19-30":
-            age = 3
+            age = 1
         elif age == "31-50":
-            age = 4
+            age = 1
         elif age == "51-65":
-            age = 5
+            age = 0.8
         elif age == "65+":
-            age = 6
+            age = 0.7
         if activity == "Low":
-            activity = 1
+            activity = 0.8
         elif activity == "Medium":
-            activity = 2
+            activity = 1
         elif activity == "High":
-            activity = 3
+            activity = 1.7
         if location == "":
             sg.popup("Please enter a location.")
             continue
@@ -64,4 +64,5 @@ while True:
         lon = location.longitude
         with open("config.json", "w") as f:
             json.dump({"age": age, "weight": weight, "height": height, "activity": activity, "lat": lat, "lon": lon}, f)
+        sg.popup("Config file generated.")
         break

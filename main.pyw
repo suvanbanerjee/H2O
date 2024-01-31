@@ -3,31 +3,25 @@ import time
 import psutil
 import json
 import requests
+import time
 
 battery_state = psutil.sensors_battery().power_plugged
 battery_level = int(psutil.sensors_battery().percent)
 config = json.load(open("config.json"))
+age = config["age"]
+weight = config["weight"]
+height = config["height"]
+activity = config["activity"]
+lat = config["lat"]
+lon = config["lon"]
+
+generate_time = time.time()
 
 def Calculate_Intake(age, weight, height, activity):
-    if age == 1:
-        age = 0.5
-    elif age == 2:
-        age = 0.6
-    elif age == 3:
-        age = 0.7
-    elif age == 4:
-        age = 0.8
-    elif age == 5:
-        age = 0.9
-    elif age == 6:
-        age = 1
-    if activity == 1:
-        activity = 0.5
-    elif activity == 2:
-        activity = 0.6
-    elif activity == 3:
-        activity = 0.7
-    return (weight * 0.033) + (height * 0.023) + (age * 0.033) + (activity * 0.033)
+
+    temp,humidity = weather(lat, lon)
+    intake = 0 # Some Math Required 
+    interval = intake / 0.2
 
 def main(interval):
     notification.notify(
@@ -36,17 +30,21 @@ def main(interval):
         timeout = 10
     )
     time.sleep(interval)
-    
+
+    if time.time() - generate_time > 86400:
+        intake = Calculate_Intake(age, weight, height, activity)
+        generate_time = time.time()
+        
 def weather(lat, lon):
     url = "https://api.open-meteo.com/v1/forecast?latitude={}&longitude={}&current=relative_humidity_2m&daily=temperature_2m_max".format(lat, lon)
     data = requests.get(url).json()
-    print(data)
-    # temp = data["main"]["temp"]
-    # return temp
+    humidity = data["current"]["relative_humidity_2m"]
+    temp = data["daily"]["temperature_2m_max"][0]
+    return humidity, temp
 
 if __name__ == "__main__":
     if not(battery_state) or battery_level < 30:
         exit()
     else:
-        # main()
-        weather(28.6273928, 77.1716954)
+        while True:
+            main(interval)
