@@ -14,8 +14,9 @@ height = config["height"]
 activity = config["activity"]
 lat = config["lat"]
 lon = config["lon"]
-
+global interval
 generate_time = time.time()
+interval = 1.5 * 60 * 60
 
 def Calculate_Intake(age, weight, height, activity):
 
@@ -23,7 +24,7 @@ def Calculate_Intake(age, weight, height, activity):
     intake = 0 # Some Math Required 
     interval = intake / 0.2
 
-def main(interval):
+def main():
     notification.notify(
         title = "Water Intake Reminder",
         message = "Time to drink water!",
@@ -47,4 +48,4 @@ if __name__ == "__main__":
         exit()
     else:
         while True:
-            main(interval)
+            main()
