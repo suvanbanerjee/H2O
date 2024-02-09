@@ -1,10 +1,16 @@
-import PySimpleGUI as sg
 import os.path
 import json
+from tkinter import messagebox
 try:
     import geopy
+    import PySimpleGUI as sg
 except ModuleNotFoundError:
-    pass
+    messagebox.showerror("Modules Not Found", "Please install required modules\nRun 'pip install -r requirements.txt' in the terminal.")
+    exit()
+if os.path.exists("config.json"):
+    sg.popup("Config file already exists.")
+    exit()
+
 
 age=["7-12","13-18","19-30","31-50","51-65","65+"]
 
