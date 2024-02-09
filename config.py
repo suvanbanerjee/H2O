@@ -1,11 +1,14 @@
 import PySimpleGUI as sg
 import os.path
 import json
-import geopy
+try:
+    import geopy
+except ModuleNotFoundError:
+    pass
 
 age=["7-12","13-18","19-30","31-50","51-65","65+"]
 
-sg.theme("default")
+sg.theme("SystemDefaultForReal")
 
 layout = [
     [sg.Text("Age")],
@@ -22,47 +25,54 @@ layout = [
     ]
 
 window = sg.Window("Water Intake Calculator", layout)
-
 while True:
-    event, values = window.read()
-    if event == sg.WIN_CLOSED:
-        break
-    if event == "Generate":
-        age = values["age"]
-        weight = values["weight"]
-        height = values["height"]
-        activity = values["activity"]
-        location = values["location"]
-        if age == "7-12":
-            age = 0.6
-        elif age == "13-18":
-            age = 1.2
-        elif age == "19-30":
-            age = 1
-        elif age == "31-50":
-            age = 1
-        elif age == "51-65":
-            age = 0.8
-        elif age == "65+":
-            age = 0.7
-        if activity == "Low":
-            activity = 0.8
-        elif activity == "Medium":
-            activity = 1
-        elif activity == "High":
-            activity = 1.7
-        if location == "":
-            sg.popup("Please enter a location.")
-            continue
-
-        geolocator = geopy.Nominatim(user_agent="Water Intake Calculator")
-        location = geolocator.geocode(location)
-        if location == None:
-            sg.Popup("Location not found. Please try again.")
-            continue
-        lat = location.latitude
-        lon = location.longitude
-        with open("config.json", "w") as f:
-            json.dump({"age": age, "weight": weight, "height": height, "activity": activity, "lat": lat, "lon": lon}, f)
-        sg.popup("Config file generated.")
+    try:
+        event, values = window.read()
+        if event == sg.WIN_CLOSED:
+            break
+        if event == "Generate":
+            age = values["age"]
+            weight = values["weight"]
+            height = values["height"]
+            activity = values["activity"]
+            location = values["location"]
+            if age == "7-12":
+                age = 0.6
+            elif age == "13-18":
+                age = 1.2
+            elif age == "19-30":
+                age = 1
+            elif age == "31-50":
+                age = 1
+            elif age == "51-65":
+                age = 0.8
+            elif age == "65+":
+                age = 0.7
+            if activity == "Low":
+                activity = 0.8
+            elif activity == "Medium":
+                activity = 1
+            elif activity == "High":
+                activity = 1.7
+            if location == "":
+                sg.popup("Please enter a location.")
+                continue
+            if weight < 0 or height < 0:
+                sg.popup("Please enter a valid weight and height.")
+                continue
+            geolocator = geopy.Nominatim(user_agent="Water Intake Calculator")
+            location = geolocator.geocode(location)
+            if location == None:
+                sg.Popup("Location not found. Please try again.")
+                continue
+            lat = location.latitude
+            lon = location.longitude
+            with open("config.json", "w") as f:
+                json.dump({"age": age, "weight": weight, "height": height, "activity": activity, "lat": lat, "lon": lon}, f)
+            sg.popup("Config file generated.")
+            break
+    except TypeError:
+        sg.popup("Enter a valid number for weight and height.")
+    except ModuleNotFoundError:
+        sg.popup("Plase install required modules. Run 'pip install -r requirements.txt' in the terminal.")
         break
