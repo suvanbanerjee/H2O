@@ -8,7 +8,8 @@ except ModuleNotFoundError:
     messagebox.showerror("Modules Not Found", "Please install required modules\nRun 'pip install -r requirements.txt' in the terminal.")
     exit()
 if os.path.exists("config.json"):
-    sg.popup("Config file already exists.")
+    sg.theme("SystemDefaultForReal")
+    sg.popup("Config file already exists.\nPlease delete the existing config file to generate a new one.")
     exit()
 
 
