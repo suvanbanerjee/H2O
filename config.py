@@ -80,6 +80,3 @@ while True:
             break
     except TypeError:
         sg.popup("Enter a valid number for weight and height.")
-    except ModuleNotFoundError:
-        sg.popup("Plase install required modules. Run 'pip install -r requirements.txt' in the terminal.")
-        break
