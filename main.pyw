@@ -21,8 +21,22 @@ interval = 1.5 * 60 * 60
 def Calculate_Intake(age, weight, height, activity):
 
     temp,humidity = weather(lat, lon)
-    intake = 0 # Some Math Required 
-    interval = intake / 0.2
+
+    base_intake = weight * 0.033 # L/day
+    base_caloric_expenditure = 10 * weight + 6.25 * height - 5 * age # Miffin-St Equation (Kcal/day)
+    if activity == "Low":
+        activity_factor = 1.2
+    elif activity == "Medium":
+        activity_factor = 1.55
+    elif activity == "High":
+        activity_factor = 1.9
+    caloric_expenditure = base_caloric_expenditure * activity_factor
+    if base_intake < caloric_expenditure/1000:
+        base_intake = caloric_expenditure/1000
+        
+
+    intake = base_intake
+    interval = intake/86400
 
 def main():
     notification.notify(

@@ -39,8 +39,8 @@ while True:
             break
         if event == "Generate":
             age = values["age"]
-            weight = values["weight"]
-            height = values["height"]
+            weight = int(values["weight"])
+            height = int(values["height"])
             activity = values["activity"]
             location = values["location"]
             if age == "7-12":
@@ -55,12 +55,6 @@ while True:
                 age = 0.8
             elif age == "65+":
                 age = 0.7
-            if activity == "Low":
-                activity = 0.8
-            elif activity == "Medium":
-                activity = 1
-            elif activity == "High":
-                activity = 1.7
             if location == "":
                 sg.popup("Please enter a location.")
                 continue
