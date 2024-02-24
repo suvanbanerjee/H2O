@@ -1,15 +1,11 @@
 # H2O
+This is a project i build for myself but i decided to share it with the world. It is a simple program that can be used to calculate the amount of water you should drink daily. and send you notifications to remind you to drink water. It is built with python and pyler library. 
 
-This branch is for people who wants just a simple water drinking reminder. Nothing fancy here, just a simple reminder to drink water every hour.
+## Installation
+To install the program, you need to have python installed on your computer. If you don't have python installed, you can download it from [here](https://www.python.org/downloads/). 
 
-## How to use
+- Clone the repository
+- Open the terminal and navigate to the project directory
+- run config.py file to set your details
 
-1. Clone the repository 
-2. Switch to the `simple` branch by running `git checkout simple`
-3. install the dependencies with `pip install -r requirements.txt`
-4. add this main.pyw to your startup folder (If you don't know how to do that, just google it)
-
-## Note
-open the `main.pyw` file and change the `time_interval` variable to the number of minutes you want to be reminded to drink water. The default is 60 minutes. 
-
-### Do check the `main` branch for a better version of this project.
+## How it works
