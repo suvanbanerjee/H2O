@@ -4,6 +4,8 @@ import psutil
 import json
 import requests
 
+json_path = "./config.json" #Replace this with the path to your config.json file
+
 def calculate_intake(age, weight, height, activity, lat, lon):
     humidity, temp = weather(lat, lon)
 
@@ -26,7 +28,7 @@ def calculate_intake(age, weight, height, activity, lat, lon):
 
     # print("Daily Intake (Ltr): ", intake)
     # print("Interval (Sec): ", interval)
-    
+
     return interval
 
 def main():
@@ -48,7 +50,7 @@ def weather(lat, lon):
         return 25, 80 # fallback values
 
 if __name__ == "__main__":
-    config = json.load(open("config.json"))
+    config = json.load(open(json_path))
     age = config["age"]
     weight = config["weight"]
     height = config["height"]
