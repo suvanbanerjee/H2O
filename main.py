@@ -21,13 +21,14 @@ def calculate_intake(age, weight, height, activity, lat, lon):
     caloric_expenditure = base_caloric_expenditure * activity_factor
     if base_intake < caloric_expenditure / 1000:
         base_intake = caloric_expenditure / 1000
-
     intake = base_intake
+    add_intake = ((0.033*(temp-31)+0.0025*(temp-31)**2+0.8148)*(1+0.02*(humidity-50)*0.01))/30
+    intake += add_intake
     no_of_glasses = intake / 0.25 # 1 glass = 250 ml
     interval = 57600 / no_of_glasses # 16 hours in a day (57600 seconds)
 
-    # print("Daily Intake (Ltr): ", intake)
-    # print("Interval (Sec): ", interval)
+    print("Daily Intake (Ltr): ", intake)
+    print("Interval (Sec): ", interval)
 
     return interval
 
@@ -39,15 +40,16 @@ def main():
     )
 
 def weather(lat, lon):
+    return 50, 20
     url = "https://api.open-meteo.com/v1/forecast?latitude={}&longitude={}&current=relative_humidity_2m&daily=temperature_2m_max".format(lat, lon)
     try:
         data = requests.get(url).json()
         humidity = data["current"]["relative_humidity_2m"]
         temp = data["daily"]["temperature_2m_max"][0]
-        return humidity, temp
+        return humidity*100, temp
     except Exception as e:
         print("Error fetching weather data:", e)
-        return 25, 80 # fallback values
+        return 0, 0
 
 if __name__ == "__main__":
     config = json.load(open(json_path))

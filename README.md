@@ -1,4 +1,7 @@
 # H2O
+
+## [ This Project is now archived. ]
+
 This is a project i build for myself but i decided to share it with the world. It is a simple program that can be used to calculate the amount of water you should drink daily. and send you notifications to remind you to drink water. It is built with python and pyler library. 
 
 ## Installation
@@ -12,6 +15,7 @@ To install the program, you need to have python installed on your computer. If y
 Note: Make sure to edit the path of json file in the main.pyw file to match the path of the son file on your computer. if you dont know just put the json file in the same directory as the main.pyw file. that is in the startup folder.
 
 ## How it works
+
 The program uses the following formula to calculate the amount of water you should drink daily. 
 ```
 base_intake = 0.033 * weight(KG)
@@ -34,8 +38,7 @@ You dont need to as the program calculates the amount of water you should drink 
 ### Woudn't it be better be a mobile app?
 Yes, it would be better as a mobile app but i am not a mobile developer. If you are a mobile developer, do send a PR to this repository.
 
-### Can i contribute to the project?
-Yes, you can contribute to the project. Just fork the repository, make your changes and send a PR. I will review it and merge.
+## Note project is archived besause of unavalability of proper research on the topic moreover its overengineered and kind of not needed but if you want to use it plug in the function to calculate the amount of water you should drink daily in the main.pyw file and run the program.
 
 
 ## License
