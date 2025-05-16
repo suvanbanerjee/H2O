@@ -1,8 +1,8 @@
-# H2O
+# H²O
 
-## [ This Project is now archived. ]
+## [This Project is Archived]
 
-This is a project i build for myself but i decided to share it with the world. It is a simple program that can be used to calculate the amount of water you should drink daily. and send you notifications to remind you to drink water. It is built with python and pyler library. 
+H²O is a personal project I built to help track daily water intake. It’s a simple Python program that calculates how much water you should drink daily and sends you timely notifications to stay hydrated. It uses the `pyler` library for cross-platform notifications.
 
 ## Installation
 To install the program, you need to have python installed on your computer. If you don't have python installed, you can download it from [here](https://www.python.org/downloads/). 
@@ -12,11 +12,11 @@ To install the program, you need to have python installed on your computer. If y
 - run config.py file to set your details
 - add main.pyw to your startup folder to run the program on startup
 
-Note: Make sure to edit the path of json file in the main.pyw file to match the path of the son file on your computer. if you dont know just put the json file in the same directory as the main.pyw file. that is in the startup folder.
+Note: Make sure to edit the path of the JSON file in the main.py file to match the path of the son file on your computer. If you do not know, just put the JSON file in the same directory as the main.py file, which is in the startup folder.
 
 ## How it works
 
-The program uses the following formula to calculate the amount of water you should drink daily. 
+The program uses the following formula to calculate the water you should drink daily. 
 ```
 base_intake = 0.033 * weight(KG)
 ```
@@ -28,7 +28,7 @@ dividing the caloric_expenditure by 1000 gives the amount of water you should dr
 
 Then it compares the base intake by both methods and selects the highest value.
 
-It divides one day (16 hours ie. 24-8[sleep]) into n equal parts so you can drink water at regular intervals and completes the amount of water you should drink daily.and sends you notifications to remind you to drink water.
+It divides one day (16 hours ie, 24-8[sleep]) into n equal parts so you can drink water at regular intervals and completes the amount of water you should drink daily.and sends you notifications to remind you to drink water.
 
 ## FAQ
 
